@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Josou Tech | Réseau et développement web</title>
+    <meta name="description"
+        content="Josou Tech : passionné d'informatique et d'administration réseau. Pose tes questions au bot et apprends les bases du réseau.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main class="page">
+
+        <!-- 1. PROFIL -->
+        <header class="profil">
+            <div class="profil-ligne">
+                <div class="avatar-zone">
+                    <div class="avatar" aria-hidden="true">JT</div>
+                    <span class="pastille" title="En ligne"></span>
+                </div>
+                <div class="identite">
+                    <h1>Josou Tech</h1>
+                    <p class="statut-texte">En ligne</p>
+                </div>
+            </div>
+
+            <p class="bio">
+                Salut, bienvenue sur ma page. Je suis passionné d'informatique, spécialisé en
+                administration réseau, et je me lance dans le développement web. J'aime comprendre
+                comment les machines communiquent entre elles, et le partager simplement.
+                Pose tes questions au bot ci-dessous et apprends les bases du réseau.
+            </p>
+        </header>
+
+        <!-- 2. AUDIO -->
+        <section class="bloc" aria-labelledby="titre-audio">
+            <h2 id="titre-audio">Écoute ma présentation</h2>
+            <p class="aide">Une minute pour savoir qui je suis et ce que je fais.</p>
+            <audio controls preload="none" src="audio/presentation.mp3">
+                Ton navigateur ne peut pas lire cet audio.
+            </audio>
+        </section>
+
+        <!-- 3. CHATBOT -->
+        <section class="bloc chat" aria-labelledby="titre-chat">
+            <div class="chat-entete">
+                <span class="bot-icone" aria-hidden="true">🌐</span>
+                <div>
+                    <h2 id="titre-chat">Réseau Bot</h2>
+                    <p class="statut"><span class="point"></span>Prêt à répondre</p>
+                </div>
+            </div>
+
+            <div id="messages" class="messages" aria-live="polite">
+                <div class="bulle bot">
+                    Bienvenue 👋 Choisis une question et je t'explique le concept en quelques lignes.
+                </div>
+            </div>
+
+            <div id="options" class="options">
+                <button type="button" data-cle="dhcp">Qu'est-ce que le DHCP ?</button>
+                <button type="button" data-cle="dns">Qu'est-ce que le DNS ?</button>
+                <button type="button" data-cle="ip">Qu'est-ce qu'une adresse IP ?</button>
+                <button type="button" data-cle="vlan">Qu'est-ce qu'un VLAN ?</button>
+                <button type="button" data-cle="nat">Qu'est-ce que le NAT ?</button>
+                <button type="button" data-cle="routeur-switch">Routeur ou switch : quelle différence ?</button>
+            </div>
+            <form id="formulaire" class="ecrire" autocomplete="off">
+                <label for="champ" class="cache">Ta question</label>
+                <input id="champ" type="text" maxlength="200" placeholder="Pose ta question sur le réseau...">
+                <button type="submit" aria-label="Envoyer">➤</button>
+            </form>
+        </section>
+
+        <!-- 4. PLATEFORMES -->
+        <section class="bloc" aria-labelledby="titre-plateformes">
+            <h2 id="titre-plateformes">Retrouve-moi ici</h2>
+            <ul class="plateformes">
+                <li><a href="https://www.tiktok.com/@TON_PSEUDO" target="_blank" rel="noopener"><span
+                            class="ico">🎵</span>TikTok<small>Mes vidéos</small></a></li>
+                <li><a href="https://github.com/TON_PSEUDO" target="_blank" rel="noopener"><span
+                            class="ico">💻</span>GitHub<small>Mes projets</small></a></li>
+                <li><a href="https://www.linkedin.com/in/TON_PSEUDO" target="_blank" rel="noopener"><span
+                            class="ico">💼</span>LinkedIn<small>Mon parcours</small></a></li>
+                <li><a href="https://wa.me/229XXXXXXXX" target="_blank" rel="noopener"><span
+                            class="ico">💬</span>WhatsApp<small>Me contacter</small></a></li>
+            </ul>
+        </section>
+
+        <footer class="pied">© 2026 Josou Tech</footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

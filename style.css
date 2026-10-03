@@ -1,0 +1,552 @@
+/* ---------- Variables ---------- */
+:root {
+  --fond: #0e1c33;
+  --fond-2: #152848;
+  --carte: #f6f8fc;
+  --texte: #e9eefa;
+  --texte-doux: #9fb0cf;
+  --encre: #14233f;
+  --accent: #ffb020;
+  --accent-fonce: #c97f00;
+  --bleu: #3b82f6;
+  --bordure: rgba(255, 255, 255, 0.12);
+  --rayon: 18px;
+  --titre: "Bricolage Grotesque", system-ui, sans-serif;
+  --corps: "Figtree", system-ui, sans-serif;
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--corps);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--texte);
+  background-color: var(--fond);
+  /* Trame de points : rappelle les noeuds d'un réseau */
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.07) 1.2px,
+    transparent 1.2px
+  );
+  background-size: 26px 26px;
+}
+
+.page {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 2rem 1.1rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+h1,
+h2 {
+  font-family: var(--titre);
+  margin: 0;
+  line-height: 1.15;
+}
+
+a:focus-visible,
+button:focus-visible,
+audio:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ---------- Profil ---------- */
+/* ---------- Profil ---------- */
+.profil-ligne {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Conteneur du logo : sert de repère pour placer la pastille */
+.avatar-zone {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.avatar {
+  width: 72px;
+  height: 72px;
+  display: grid;
+  place-items: center;
+  font-family: var(--titre);
+  font-weight: 800;
+  font-size: 1.6rem;
+  color: var(--encre);
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+/* Pastille verte en bas à droite, comme sur Messenger */
+.pastille {
+  position: absolute;
+  right: 1px;
+  bottom: 1px;
+  width: 18px;
+  height: 18px;
+  background: #34d399;
+  border: 3px solid var(--fond);
+  border-radius: 50%;
+}
+
+.identite h1 {
+  font-size: clamp(1.9rem, 8vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.statut-texte {
+  margin: 0.15rem 0 0;
+  font-size: 0.9rem;
+  color: #34d399;
+}
+
+.bio {
+  max-width: 44ch;
+  margin: 1.2rem 0 0;
+  color: var(--texte);
+}
+
+/* Utilisés par l'en-tête du chatbot : ne pas supprimer */
+.statut {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0.4rem 0 0;
+  font-size: 0.9rem;
+  color: var(--texte-doux);
+}
+
+.point {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.6);
+  animation: pulse 2.4s infinite;
+}
+
+@keyframes pulse {
+  70% {
+    box-shadow: 0 0 0 8px rgba(52, 211, 153, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(52, 211, 153, 0);
+  }
+}
+
+/* ---------- Blocs ---------- */
+.bloc {
+  padding: 1.4rem 1.3rem;
+  background: var(--fond-2);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+}
+
+.bloc h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.aide {
+  margin: 0.3rem 0 1rem;
+  color: var(--texte-doux);
+  font-size: 0.95rem;
+}
+
+audio {
+  width: 100%;
+  height: 44px;
+}
+
+/* ---------- Chatbot (le point fort de la page) ---------- */
+.chat {
+  display: flex;
+  flex-direction: column;
+  height: clamp(520px, 80vh, 680px);
+  background: var(--carte);
+  color: var(--encre);
+  border: none;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+.chat-entete {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem 1.2rem;
+  color: var(--texte);
+  background: var(--bleu);
+  background-image: linear-gradient(135deg, #2563eb, #3b82f6);
+}
+
+.chat-entete h2 {
+  font-size: 1.15rem;
+}
+.chat-entete .statut {
+  margin: 0;
+  color: #dbe7ff;
+  font-size: 0.82rem;
+}
+
+.bot-icone {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  font-size: 1.3rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+}
+
+.messages {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.1rem 1.1rem 0.8rem;
+  overflow-y: auto;
+}
+
+.bulle {
+  max-width: 86%;
+  padding: 0.65rem 0.95rem;
+  font-size: 0.97rem;
+  line-height: 1.5;
+}
+
+.bulle.bot {
+  align-self: flex-start;
+  background: #e3e9f4;
+  border-radius: 4px 16px 16px 16px;
+}
+
+.bulle.user {
+  align-self: flex-end;
+  color: var(--encre);
+  font-weight: 500;
+  background: var(--accent);
+  border-radius: 16px 4px 16px 16px;
+}
+
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.9rem 1.1rem 1.2rem;
+  border-top: 1px solid #dbe2ef;
+}
+
+.options button {
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.5rem 0.9rem;
+  color: var(--encre);
+  background: #fff;
+  border: 1.5px solid #b9c7e2;
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+}
+
+.options button:hover {
+  background: #eaf1ff;
+  border-color: var(--bleu);
+}
+.options button:active {
+  transform: scale(0.97);
+}
+
+/* Bulle "en train d'écrire" */
+.bulle.saisie {
+  display: flex;
+  gap: 5px;
+  padding: 0.85rem 1rem;
+}
+
+.bulle.saisie span {
+  width: 7px;
+  height: 7px;
+  background: #7b8ba8;
+  border-radius: 50%;
+  animation: rebond 1.2s infinite;
+}
+
+.bulle.saisie span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.bulle.saisie span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes rebond {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  30% {
+    transform: translateY(-5px);
+    opacity: 1;
+  }
+}
+
+.options button:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+/* Champ de saisie */
+.ecrire {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.9rem 1.1rem 1.2rem;
+  border-top: 1px solid #dbe2ef;
+}
+
+.ecrire input {
+  flex: 1;
+  min-width: 0;
+  font: inherit;
+  font-size: 1rem; /* 16px minimum : évite le zoom automatique sur iPhone */
+  padding: 0.6rem 1rem;
+  color: var(--encre);
+  background: #fff;
+  border: 1.5px solid #b9c7e2;
+  border-radius: 999px;
+}
+
+.ecrire input:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 1px;
+  border-color: var(--bleu);
+}
+
+.ecrire button {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  font-size: 1.1rem;
+  color: var(--encre);
+  background: var(--accent);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.ecrire button:disabled,
+.ecrire input:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+/* Texte réservé aux lecteurs d'écran */
+.cache {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+/* Questions de suite, juste après une réponse */
+.suites {
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+  max-width: 92%;
+  margin-top: 0.3rem;
+}
+
+.suites-titre {
+  margin: 0 0 0.1rem;
+  font-size: 0.85rem;
+  color: #5a6b8c;
+}
+
+.suites button {
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: left;
+  padding: 0.5rem 0.9rem;
+  color: var(--encre);
+  background: #fff;
+  border: 1.5px solid #b9c7e2;
+  border-radius: 14px;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+}
+
+.suites button:hover {
+  background: #eaf1ff;
+  border-color: var(--bleu);
+}
+.suites button:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+/* Cartes-liens (vidéo ou site) */
+.liens {
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 92%;
+}
+
+.lien {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.8rem;
+  color: var(--encre);
+  text-decoration: none;
+  background: #fff;
+  border: 1.5px solid #cdd8ee;
+  border-radius: 14px;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+.lien:hover {
+  border-color: var(--bleu);
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.15);
+}
+
+.lien-icone {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  font-size: 1rem;
+  color: #fff;
+  background: var(--bleu);
+  border-radius: 10px;
+}
+
+.lien.video .lien-icone {
+  background: #e11d48;
+}
+
+.lien-texte {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.lien-titre {
+  font-weight: 600;
+  font-size: 0.92rem;
+  line-height: 1.3;
+}
+.lien-source {
+  font-size: 0.8rem;
+  color: #5a6b8c;
+}
+.lien-fleche {
+  margin-left: auto;
+  color: #5a6b8c;
+}
+
+/* ---------- Plateformes ---------- */
+.plateformes {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
+}
+
+.plateformes a {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 0.7rem;
+  align-items: center;
+  height: 100%;
+  padding: 0.8rem 0.9rem;
+  font-weight: 600;
+  color: var(--texte);
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--bordure);
+  border-radius: 14px;
+  transition:
+    border-color 0.15s,
+    background 0.15s;
+}
+
+.plateformes a:hover {
+  border-color: var(--accent);
+  background: rgba(255, 176, 32, 0.08);
+}
+
+.plateformes .ico {
+  grid-row: span 2;
+  font-size: 1.5rem;
+}
+.plateformes small {
+  font-weight: 400;
+  font-size: 0.78rem;
+  color: var(--texte-doux);
+}
+
+.pied {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--texte-doux);
+}
+
+/* ---------- Écrans plus larges ---------- */
+@media (min-width: 640px) {
+  .page {
+    padding-top: 3.5rem;
+  }
+}
+
+/* ---------- Mouvement réduit ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .point {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    transition: none !important;
+  }
+}
+.chat-entete,
+.options,
+.ecrire {
+  flex-shrink: 0;
+}
